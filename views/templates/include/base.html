@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="/static/css/bs5/bootstrap.min.css">
+<style>
+    body {
+        margin: 0;
+        background-color: #f5f5dc; /* 베이지색 배경 */
+    }
+</style>
     <link rel="stylesheet" href="/static/css/project.css">
 
     {% block style %}{% endblock %}
 
 </head>
 <body>
+
 <div id="wrap" class="container">
     {% include 'include/header.html' %}
     <hr>

@@ -3,7 +3,22 @@
 {% block title %}홈페이지 - 세미프로젝트{% endblock %}
 
 {% block main %}
-<main>
-    <div class="text-center"><img src="/static/img/lion.png" class="img-fluid"></div>
-</main>
+    <style>
+        .custom-img {
+            width: 50%; /* 또는 원하는 비율 */
+            height: auto; /* 비율에 맞게 높이 자동 조정 */
+            max-width: 100%; /* 부모 컨테이너 너비를 초과하지 않도록 설정 */
+        }
+        .image-container {
+            display: flex;
+            justify-content: center; /* 가로 방향으로 중앙 정렬 */
+            align-items: center; /* 세로 방향으로 중앙 정렬 */
+            height: 65vh; /* 화면 전체 높이 */
+        }
+    </style>
+    <main>
+        <div class="image-container">
+            <img src="/static/img/showroom.png" class="custom-img">
+        </div>
+    </main>
 {% endblock %}
