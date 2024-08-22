@@ -1,5 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코캡 가구 쇼핑몰</title>
+    <style>
+        header img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            padding: 0;
+        }
+        .nav-item {
+            margin: 0;
+        }
+        .nav-link {
+            text-decoration: none;
+            padding: 10px;
+            color: #000;
+        }
+        .nav-link.active {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
 <header class="py-3">
-    <h1>세미프로젝트 V1</h1>
+    <img src="/static/img/kocap.png" alt="코캡 가구 쇼핑몰">
 </header>
 <nav>
     <ul class="nav nav-fill">
@@ -10,3 +43,5 @@
         <li class="nav-item"><a class="nav-link active" href="/member/myinfo">회원정보</a></li>
     </ul>
 </nav>
+</body>
+</html>
