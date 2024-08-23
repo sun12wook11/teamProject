@@ -7,6 +7,7 @@ from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
 from app.dbfactory import db_startup, db_shutdown
+from app.routes.category import category_router
 from app.routes.member import member_router
 
 
@@ -20,10 +21,15 @@ app = FastAPI(lifespan=lifespan)
 templates = Jinja2Templates(directory="views/templates")
 app.mount("/static", StaticFiles(directory="views/static"), name="static")
 
+
 app.include_router(member_router, prefix="/member")
+app.include_router(category_router, prefix="/category")
+
+
 @app.get("/", response_class=HTMLResponse)
 async def index(req: Request):
     return templates.TemplateResponse("index.html", {"request": req})
+
 
 if __name__ == '__main__':
     import uvicorn
