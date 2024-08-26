@@ -1,53 +1,112 @@
 {% extends 'include/base.html' %}
 
 {% block title %}
-세미프로젝트 - 로그인
+    세미프로젝트
 {% endblock %}
-
+{% block style %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 50px;
+            color: #333;
+            text-align: left;
+        }
+        hr {
+            border: 2px solid black;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="password"] {
+            font-family: Arial, sans-serif;
+        }
+        .btn {
+            display: block;
+            padding: 12px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #555;
+        }
+        .signup-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .signup-link a {
+            color: #333;
+            text-decoration: none;
+        }
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}
 {% block main %}
-<main>
-    <h2>로그인</h2>
-    <div class="d-flex justify-content-center align-items-center" style="height: 65vh">
-        <form name="loginfrm" class="col-5">
-            <div class="row my-2"><label for="userid" class="col-form-label col-4 text-end">아이디</label>
-                <div class="col-7">
-                    <input type="text" name="userid" id="userid" required class="form-control"></div></div>
-            <div class="row my-2"><label for="passwd" class="col-form-label col-4 text-end">비밀번호</label>
-                <div class="col-7">
-                    <input type="password" name="passwd" id="passwd" required class="form-control"></div></div>
-            <div class="row my-2"><label class="col-form-label col-4 text-end"></label>
-                <div class="col-7">
-                    <button type="submit" id="loginbtn" class="btn btn-danger">로그인</button></div></div>
-        </form>
-    </div>
-</main>
+    <main>
+        <body>
+        <div class="container">
+            <hr>
+            <h1>Login</h1>
+            <form action="/board/login" method="post">
+                <div class="form-group">
+                    <label for="text">ID *</label>
+                    <input type="text" id="text" name="uid" placeholder="아이디를 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">PASSWD*</label>
+                    <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+                <button type="submit" class="btn">로그인</button>
+            </form>
+            <div class="signup-link">
+                <p>계정이 없으신가요? <a href="/board/join">회원가입</a></p>
+            </div>
+        </div>
+        </body>
+    </main>
 {% endblock %}
 
-{% block script %}
-<script>
-    let loginfrm = document.loginfrm;
-
-    loginfrm.addEventListener('submit', (e) => {
-        e.preventDefault();  // 버튼의 submit 기능 중지
-
-        const formData = new FormData(loginfrm);
-        let jsondata = {};
-        formData.forEach((val, key) => {
-            jsondata[key] = val;
-        });
-        console.log(jsondata);
-
-        fetch('/member/login', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(jsondata),
-            redirect: 'follow'
-        }).then((res) => {
-            if (res.redirected) location.href = res.url;
-        });
-    });
-</script>
-{% endblock %}

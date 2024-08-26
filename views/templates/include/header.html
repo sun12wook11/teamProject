@@ -1,27 +1,12 @@
-<!--<header class="py-3"><h1>세미프로젝트 v1</h1></header>-->
-<!--<nav><ul class="nav nav-fill">-->
-<!--    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>-->
+{#<!DOCTYPE html>#}
+{#<html lang="ko">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>코캡 가구 쇼핑몰</title>#}
+{% block style %}
 
-<!--    {% if 'logined_uid' not in request.session %}-->
-<!--    <li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>-->
-<!--    <li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>-->
-<!--    {% else %}-->
-<!--    <li class="nav-item"><a class="nav-link disabled">회원가입</a></li>-->
-<!--    <li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>-->
-<!--    {% endif %}-->
 
-<!--    <li class="nav-item"><a class="nav-link" href="/board/list">게시판</a></li>-->
-<!--    <li class="nav-item"><a class="nav-link" href="/member/myinfo">회원정보</a></li>-->
-<!--</ul>-->
-<!--    <hr>-->
-<!--</nav>-->
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>코캡 가구 쇼핑몰</title>
     <style>
         body {
             margin: 0;
@@ -39,7 +24,6 @@
             left: 10px; /* 좌측 여백 설정 */
             width: 130px; /* 로고의 너비 설정 */
             height: auto; /* 로고의 비율 유지 */
-            /* 필요에 따라 이미지의 색상을 조정할 수 있음 */
         }
         .nav {
             display: flex;
@@ -53,7 +37,7 @@
         }
         .nav-link {
             text-decoration: none;
-            padding: 10px;
+            padding: 1% 100px;
             color: #000;
         }
         .nav-link.active {
@@ -66,11 +50,32 @@
             padding: 0;
             background-color: #f5f5dc !important; /* 배경색 변경 */
         }
+        .auth-links {
+            position: absolute;
+            top: 20px; /* 상단 여백 설정 */
+            right: 20px; /* 우측 여백 설정 */
+        }
+        .auth-links a {
+            text-decoration: none;
+            margin-left: 10px;
+            color: #000;
+            font-size: 15px; /* 글자 크기를 작게 설정 */
+        }
     </style>
-</head>
-<body>
+{% endblock %}
+{#</head>#}
+{#<body>#}
 <header class="py-3">
-    <img src="/static/img/kocap.png" alt="코캡1 가구 쇼핑몰">
+    <img src="/static/img/kocap.png" alt="코 캡 가구 쇼핑몰">
+    <!-- 우측 상단의 회원가입 및 로그인 링크 -->
+    <div class="auth-links">
+        {% if 'logined_uid' not in request.session %}
+            <a href="/member/join">Create an account</a>
+            <a href="/member/login">Sign in</a>
+        {% else %}
+            <a href="/member/logout">로그아웃</a>
+        {% endif %}
+    </div>
 </header>
 <nav>
     <ul class="nav nav-fill">
@@ -80,5 +85,5 @@
         <li class="nav-item"><a class="nav-link active" href="/menu/welcome">welcome</a></li>
     </ul>
 </nav>
-</body>
-</html>
+{#</body>#}
+{#</html>#}
