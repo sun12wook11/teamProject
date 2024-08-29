@@ -23,9 +23,9 @@ async def db_startup():
 
     # Base.metadata.create_all(bind=engine)
     member.Base.metadata.create_all(engine)
-    cart.Base.metadata.create_all(engine)
     order.Base.metadata.create_all(engine)
     product.Base.metadata.create_all(engine)
+
 
 
 async def db_shutdown():
