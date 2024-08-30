@@ -1,58 +1,56 @@
 {% block style %}
-<style>
-    body {
-        margin: 0;
-        background-color: white;
-    }
-    a {
-        font-size: 2em;
-        color: black;
-    }
-    header {
-        position: relative;
-        height: 100px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 20px;
-        color: black;
-    }
-    nav {
-        flex-grow: 1;
-    }
-    .nav {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-    .nav-item {
-        margin: 0 10px;
-    }
-    .nav-link {
-        text-decoration: none;
-        color: black;
-    }
-    .nav-link.active {
+    <style>
+        body {
+            margin: 0;
+            background-color: white;
+        }
+        a {font-size: 2em;
+            color: black;
+        }
+        header {
+            position: relative;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            color: black;
+        }
+        nav {
+            flex-grow: 1;
+        }
+        .nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-item {
+            margin: 0 10px;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: black;
+        }
+        .nav-link.active {
 
-    }
-    .auth-links {
-        margin-left: 190px;
-        display: flex;
-        align-items: center;
-        text-align: right;
-    }
-    .auth-links a {
-        text-decoration: none;
-        margin-left: 10px;
-        color: black;
-        font-size: 15px;
-    }
-</style>
+        }
+        .auth-links {
+            margin-left: 190px;
+            display: flex;
+            align-items: center;
+            text-align: right;
+        }
+        .auth-links a {
+            text-decoration: none;
+            margin-left: 10px;
+            color: black;
+            font-size: 15px;
+        }
+    </style>
 {% endblock %}
-
 <header class="py-3">
-    <a id="indexh1">KOCAP</a>
+    <a id="indexh1" href="/" style="text-decoration: none; color: black;">KOCAP</a>
     <nav>
         <ul class="nav">
             <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
@@ -62,23 +60,12 @@
         </ul>
     </nav>
     <div class="auth-links">
-        {% if 'logined_uid' in request.session %}
-        <!-- 일반 회원으로 로그인했을 때 -->
-        <a href="/member/myinfo">My Info</a>
-        <a href="/cart/mycart">My Cart</a>
-        <a href="/member/logout">로그아웃</a>
-
-
-        {% elif request.session.get('is_admin') %}
-        <!-- Admin으로 로그인했을 때 -->
-        <a href="/admin/admin">관리자페이지</a>
-        <a href="/member/logout">로그아웃</a>
-
+        {% if 'logined_uid' not in request.session %}
+            <a href="/member/join">Create an account</a>
+            <a href="/member/login">Sign in</a>
         {% else %}
-        <!-- 로그인하지 않았을 때 -->
-        <a href="/member/join">Create an account</a>
-        <a href="/member/login">Sign in</a>
-
+            <a href="/member/logout">Logout</a>
         {% endif %}
     </div>
 </header>
+

@@ -110,12 +110,12 @@
     <!-- 우측 상단의 회원가입 및 로그인 링크 -->
     <<div class="auth-links">
     {% if 'userid' in request.session %}
-    <a href="/shop/cart">Cart</a>
-    <a href="/member/myinfo">My info</a>
-    <a href="/member/logout">Log Out</a>
+        <a href="/shop/cart">Cart</a>
+        <a href="/member/myinfo">My info</a>
+        <a href="/member/logout">Log Out</a>
     {% else %}
-    <a href="/member/join">Create an account</a>
-    <a href="/member/login">Sign in</a>
+        <a href="/member/join">Create an account</a>
+        <a href="/member/login">Sign in</a>
     {% endif %}
 </div>
 </header>
