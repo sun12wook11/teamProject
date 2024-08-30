@@ -21,7 +21,15 @@ async def item_gallery(request: Request):
     return templates.TemplateResponse("shop/item_gallery.html", {"request": request})
 
 
-@shop_router.get("/item_detail", response_class=HTMLResponse)
-async def item_detail(request: Request):
-    return templates.TemplateResponse("shop/item_detail.html", {"request": request})
+@shop_router.get("/item_detail/{prdno}", response_class=HTMLResponse)
+async def item_detail(request: Request, prdno: int, db: Session = Depends(get_db)):
+    product = db.query(ProductModel).filter(ProductModel.prdno == prdno).first()
+
+    if not product:
+        raise HTTPException(status_code=404, detail="상품을 찾을 수 없습니다.")
+
+    return templates.TemplateResponse("shop/item_detail.html", {
+        "request": request,
+        "product": product
+    })
 

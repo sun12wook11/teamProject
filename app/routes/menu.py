@@ -10,6 +10,7 @@ templates = Jinja2Templates(directory='views/templates')
 async def company(request: Request):
     return templates.TemplateResponse("menu/company.html", {"request": request})
 
+
 @menu_router.get("/welcome", response_class=HTMLResponse)
 async def welcome(request: Request):
     return templates.TemplateResponse("menu/welcome.html", {"request": request})

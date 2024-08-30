@@ -11,9 +11,11 @@ class Product(Base):
     price = Column(String(20), nullable=False)
     type = Column(String(50), nullable=False)
     qty = Column(Integer, nullable=False, default=0)
+    description = Column(String(100))
     regdate = Column(DateTime, default=datetime.now, nullable=True)
-    # Relationship with PrdAttach
-    attachments = relationship("PrdAttach", back_populates="product")
+
+    carts = relationship("Cart", back_populates="product")
+
 
 class PrdAttach(Base):
     __tablename__ = 'prdattach'
@@ -23,9 +25,6 @@ class PrdAttach(Base):
     img2 = Column(String(50), nullable=False)
     img3 = Column(String(50), nullable=False)
     img4 = Column(String(50), nullable=False)
-    # Relationship with Product
-    product = relationship("Product", back_populates="attachments")
-
 
 class Cart(Base):
     __tablename__ = 'cart'
@@ -34,3 +33,5 @@ class Cart(Base):
     prdno = Column(Integer, ForeignKey('product.prdno'), nullable=False)
     qty = Column(Integer, nullable=False)
     price = Column(Integer, nullable=False)
+
+    product = relationship("Product", back_populates="carts")
